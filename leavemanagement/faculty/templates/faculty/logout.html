@@ -1,0 +1,9 @@
+{% extends "manager/base.html" %}
+
+{% block content %}
+<div class="container text-center mt-4">
+    <p>You have been logged out. Click <a href="{% url 'facultyLogin' %}">here</a> to login agian.</p>
+    <p class="text-center">Or</p>
+    <p class="text-center">Click <a href="{% url 'ManagerHome' %}">here</a> to go to home page</p>
+</div>
+{% endblock %}

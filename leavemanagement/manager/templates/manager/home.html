@@ -1,0 +1,14 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+    <div class="container homediv">
+        <div class="row mt-4 homedivRow" style="margin: 0 auto; widows: 100%; height:100%;">
+            <div class="col-md-6">
+                <a href="{% url 'FacultyHome' %}" class="btn btn-lg btn-outline-dark btn-block">Faculty</a>
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'StudentHome' %}" class="btn btn-lg btn-outline-dark btn-block">Student</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'manager/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'StudentHome' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'StudentPendingApplication' %}">Pending Applications</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'StudentArchivedApplication' %}">Archived Applications</a>
+                </li>
+            </ul>
+        
+            <span class="navbar-text mr-3">
+                Welcome {{request.user}} 
+            </span>
+            
+            <span class="navbar-text">
+                <a href="{% url 'studentLogout' %}">Logout</a>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row mt-3 mb-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2 class="text-center mb-3">SUBMIT YOUR APPLICATION</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input class="btn btn-success btn-block" type="submit">
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+{% endblock %}

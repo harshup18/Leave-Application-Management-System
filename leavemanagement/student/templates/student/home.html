@@ -1,0 +1,51 @@
+{% extends 'manager/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'StudentHome' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li> -->
+            </ul>
+        
+            <span class="navbar-text mr-3">
+                Welcome {{request.user}} 
+            </span>
+            
+            <span class="navbar-text">
+                <a href="{% url 'studentLogout' %}">Logout</a>
+            </span>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="studentDashboard">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="text-center mt-4 mb-4">
+                        <h1>STUDENT DASHBOARD</h1>
+                    </div>
+                    <p>
+                        <a href="{% url 'NewApplication' %}" class="btn btn-lg btn-outline-primary btn-block">Create an Application</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'StudentPendingApplication' %}" class="btn btn-lg btn-outline-primary btn-block">Pending Application</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'StudentArchivedApplication' %}" class="btn btn-lg btn-outline-primary btn-block">Archived Application</a>
+                    </p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

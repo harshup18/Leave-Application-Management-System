@@ -5,7 +5,7 @@ from student.models import Application, Student
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
-
+import smtplib
 
 # Faculty Dashboard
 @login_required(login_url='facultyLogin')
@@ -35,14 +35,23 @@ def AcceptApplication(request, app_id):
         application.accepted = True
         application.is_pending = False
         application.save()
+        print('\nSending mail...!\n') 
+
+        # Enter the Senders email address and Password below
+        gmailAddress = 'alphakillerrr@gmail.com'      # The default Id-password are working
+        gmailPassword = 'qwerty@123'
+        msg = "Application accepted!"
+        mailTo = [application.author.user.email]
+        # Below is code to send mail to the Client using SMTPLIB 
         try:
-            msg = "Your application has been accepted"
-            send_mail(
-                'Application Accepted',
-                msg,
-                settings.EMAIL_HOST_USER,
-                [application.author.user.email]
-            )  # Sends mail to host
+            Sub='Response for your queries '
+            Message='Subject:{}\n\n{}'.format(Sub,msg)
+            mailServer = smtplib.SMTP('smtp.gmail.com', 587)
+            mailServer.starttls()
+            mailServer.login(gmailAddress, gmailPassword)
+            mailServer.sendmail(gmailAddress, mailTo, Message)
+            print(" \nMail has been sent to your email!\n")
+            mailServer.quit()
         except:
             return redirect('FacultyPendingApplications')
     else:
@@ -67,14 +76,25 @@ def RejectApplication(request, app_id):
     application.rejected = True
     application.is_pending = False
     application.save()
+    
+    print('\nSending mail...!\n') 
+
+    # Enter the Senders email address and Password below
+    gmailAddress = 'alphakillerrr@gmail.com'      # The default Id-password are working
+    gmailPassword = 'qwerty@123'
+    msg = "Application Rejected!"
+    mailTo = [application.author.user.email]
+    # Below is code to send mail to the Client using SMTPLIB 
     try:
-        msg = "Your application has been rejected"
-        send_mail(
-            'Application Accepted',
-            msg,
-            settings.EMAIL_HOST_USER,
-            [application.author.user.email]
-        )  # Sends mail to host
+        Sub='Response for your queries '
+        Message='Subject:{}\n\n{}'.format(Sub,msg)
+        mailServer = smtplib.SMTP('smtp.gmail.com', 587)
+        mailServer.starttls()
+        mailServer.login(gmailAddress, gmailPassword)
+        mailServer.sendmail(gmailAddress, mailTo, Message)
+        print(" \nMail has been sent to your email!\n")
+        mailServer.quit()
+
     except:
         return redirect('FacultyPendingApplications')
     return redirect("FacultyPendingApplications")

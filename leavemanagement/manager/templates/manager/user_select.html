@@ -1,0 +1,56 @@
+{% extends 'manager/base.html' %}
+
+<div class="userselect">
+{% block content %}
+    
+    {% if user.is_authenticated %}
+    <div class="card">
+          <h1 class="text-center mt-4">Welcome to the Portal</h1>
+          <p class="text-center"><b>LNMIIT, Jaipur</b></p>
+          <p class="title text-center">User: {{user.first_name}}</p>
+          
+    </div>
+    <div class="container homediv">
+        <div class="row mt-4 homedivRow" style="margin: 0 auto; widows: 100%; height:100%;">
+            
+            {% if user.username|slice:"0:1" !=  '1' %}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <a href="{% url 'FacultyHome' %}" class="btn btn-lg btn-outline-dark btn-block">Jump to Dashboard</a>
+            </div>
+            <div class="col-md-3"></div>
+            {% endif %}
+            {% if user.username|slice:"0:1" ==  '1' %}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <a href="{% url 'StudentHome' %}" class="btn btn-lg btn-outline-dark btn-block">Jump to Dashboard</a>
+            </div>
+            <div class="col-md-3"></div>
+            {% endif %}
+    {% endif %}
+    {% if not user.is_authenticated %}
+    <div class="card">
+          <h1 class="text-center mt-4">Welcome to the Portal</h1>
+          <p class="text-center"><b>LNMIIT, Jaipur</b></p>
+          
+    </div>
+    <div class="container homediv">
+        <div class="row mt-4 homedivRow" style="margin: 0 auto; widows: 100%; height:100%;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{% url 'FacultyHome' %}" class="btn btn-lg btn-outline-dark btn-block">Faculty</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'StudentHome' %}" class="btn btn-lg btn-outline-dark btn-block">Student</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+    {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+</div>

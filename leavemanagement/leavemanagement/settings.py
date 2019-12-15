@@ -137,7 +137,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # for gmail email backend
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ENTER YOUR EMAIL'
-EMAIL_HOST_PASSWORD = 'ENTER YOUR PASSWORD'
+EMAIL_HOST_USER = 'hupa6503@gmail.com'
+EMAIL_HOST_PASSWORD = 'pata nahi'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics'),
+]

@@ -6,6 +6,7 @@ from django.utils import timezone
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # level = models.IntegerField(default=2)
 
     def __str__(self):
         return self.user.username
